@@ -4,3 +4,7 @@ this project is for the purpuse of controlling acces to certain rooms. the user 
 
 this was made for [het bureau](https://www.het-bureau.com/).
 
+# features
+v logbook
+v openning doors
+v support for multible acces points

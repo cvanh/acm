@@ -1,0 +1,13 @@
+{
+    "ServerIp":"192.168.178.98:3000",
+    "gpio":{
+        "reader":{
+            "clock":23,
+            "mosi":19,
+            "miso":21,
+            "client":24
+        },
+        "door":36
+    }
+
+}

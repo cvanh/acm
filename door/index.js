@@ -1,28 +1,29 @@
 const Mfrc522 = require("mfrc522-rpi");
 const SoftSPI = require("rpi-softspi");
 const axios = require('axios');
-var rpio = require('rpio');
+const rpio = require('rpio');
+const config = require('./config');
+
+
 //# This loop keeps checking for chips. If one is near it will get the UID and authenticate
 console.log("scanning...");
 
 const softSPI = new SoftSPI({
-  clock: 23, // pin number of SCLK
-  mosi: 19, // pin number of MOSI
-  miso: 21, // pin number of MISO
-  client: 24 // pin number of CS
+  clock: config.gpio.reader.clock, // pin number of SCLK
+  mosi: config.gpio.reader.mosi, // pin number of MOSI
+  miso: config.gpio.reader.miso, // pin number of MISO
+  client: config.gpio.reader.client // pin number of CS
 });
-rpio.open(36, rpio.OUTPUT, rpio.LOW);
+rpio.open(config.gpio.door, rpio.OUTPUT, rpio.LOW);
 
 
 
 
-// GPIO 24 can be used for buzzer bin (PIN 18), Reset pin is (PIN 22).
-// I believe that channing pattern is better for configuring pins which are optional methods to use.
-const mfrc522 = new Mfrc522(softSPI).setResetPin(22).setBuzzerPin(18);
+const mfrc522 = new Mfrc522(softSPI)
 
 setInterval(async function() {
   // reset the door pin
-  rpio.write(36, rpio.LOW);
+  rpio.write(config.gpio.door, rpio.LOW);
 
 
   //# reset card
@@ -58,7 +59,7 @@ setInterval(async function() {
 
 
 async function AllowedAcces(Formatteduid){
-  axios.post('http://192.168.178.98:8000/check', {
+  axios.post(`http://${config.ServerIp}/check`, {
     "uid": Formatteduid
   })
   .then(function (response) {
@@ -67,10 +68,10 @@ async function AllowedAcces(Formatteduid){
     if(response.data === true){
       // open door
       console.log("opening door")
-      rpio.write(36, rpio.HIGH);
+      rpio.write(config.gpio.door, rpio.HIGH);
 
       rpio.sleep(10);
-      rpio.write(36, rpio.LOW);
+      rpio.write(config.gpio.door, rpio.LOW);
       rpio.msleep(500);
     }
 

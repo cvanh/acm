@@ -43,6 +43,7 @@ app.post("/check", jsonParser, async (req, res) => {
         }
         // console.log(IsAuthenticated);
 
+        // add this interaction to the logbook 
         con.query(`INSERT INTO logbook ('uid', 'date', 'point', 'status') VALUES ('${req.body.uid}', current_timestamp(), '0', '${IsAuthenticated}');`)
 
         // send the acces status
