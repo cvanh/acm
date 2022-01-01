@@ -18,16 +18,22 @@ con.connect(() => {
 });
 
 app.post("/check", jsonParser, async (req, res) => {
-  console.log(req.body.uid);
+  // console.log(req.body.uid);
+
+  // make a query to the db to ensure the user has the correct uid
   await con.query(
     `SELECT * FROM users WHERE uid = "${req.body.uid}" AND allowed = 0 AND active = 0;`,
     (error, results, fields) => {
-      // no results from query
+
+
       if (!results[0]) {
+        // ok so no results from query send error with the correct status
         res.status(204).send(false);
       } else {
-        console.log(results[0]);
-        let IsAuthenticated;
+        // console.log(results[0]);
+
+
+        let IsAuthenticated; // boolean, is the user allowed to have acces to the building
         if (results[0].allowed === 0) {
           // user has permission
           IsAuthenticated = true;
@@ -35,9 +41,11 @@ app.post("/check", jsonParser, async (req, res) => {
           // user doesnt have permission
           IsAuthenticated = false;
         }
-        console.log(IsAuthenticated);
+        // console.log(IsAuthenticated);
 
-        // send the data
+        con.query(`INSERT INTO logbook ('uid', 'date', 'point', 'status') VALUES ('${req.body.uid}', current_timestamp(), '0', '${IsAuthenticated}');`)
+
+        // send the acces status
         res.status(200).send(IsAuthenticated);
       }
     }
