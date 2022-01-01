@@ -7,10 +7,10 @@ require("dotenv");
 var mysql = require("mysql");
 
 const con = mysql.createConnection({
-  host: "192.168.178.57",
-  user: "cvanh",
-  password: "kaas",
-  database: "doorbell",
+  host: process.env.host,
+  user: process.env.user,
+  password: process.env.password,
+  database: process.env.database,
 });
 
 con.connect(() => {
