@@ -2,6 +2,7 @@
 /server/node_modules
 .DS_Store
 *.env
+/website/.env.php
 
 /door/node_modules
 .env.local
