@@ -1,5 +1,5 @@
 {
-    "ServerIp":"192.168.178.98:3000",
+    "ServerIp":"192.168.178.98:8000",
     "gpio":{
         "reader":{
             "clock":23,
@@ -7,7 +7,8 @@
             "miso":21,
             "client":24
         },
-        "door":36
+        "door":36,
+        "button":37
     }
 
 }
