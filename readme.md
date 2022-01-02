@@ -8,3 +8,7 @@ this was made for [het bureau](https://www.het-bureau.com/).
 v logbook
 v openning doors
 v support for multible acces points
+
+todo's
+button support
+check if someone is home and add a button
