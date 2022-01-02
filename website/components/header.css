@@ -1,0 +1,8 @@
+.menu_knop{
+    display: inline-block;
+    margin: 10px;
+    background-color: gray;
+    height: 50px;
+    width: 50px;
+    text-align: center;
+}
