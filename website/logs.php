@@ -14,8 +14,12 @@
     ?>
     <h1>overview of the acces logs</h1>
     <?php
+    include_once("./database/database.php");
+    $db = new Database($conn);
+    $db->init();
+    
 
-    var_dump($_ENV["db_ip"])
+    var_dump($conn);
 ?>
 
 </body>

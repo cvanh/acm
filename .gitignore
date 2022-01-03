@@ -3,6 +3,8 @@
 .DS_Store
 *.env
 /website/.env.php
+/website/composer.lock
+/website/vendor
 
 /door/node_modules
 .env.local
