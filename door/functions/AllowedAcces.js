@@ -2,7 +2,7 @@ const axios = require('axios');
 const config = require('../config');
 
 async function AllowedAcces(Formatteduid){
-    axios.post(`http://${config.ServerIp}/check`, {
+    axios.post(`http://${config.ServerIp}/checkuid`, {
       "uid": Formatteduid
     })
     .then(function (response) {
