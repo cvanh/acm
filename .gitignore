@@ -5,6 +5,9 @@
 /website/.env.php
 /website/composer.lock
 /website/vendor
+/door-rs/target
+/door-rs/Cargo.lock
+
 
 /door/node_modules
 .env.local
